@@ -1,6 +1,7 @@
 import QA.Books;
 import QA.Patrons;
 
+import java.awt.print.Book;
 import java.util.*;
 
 
@@ -33,11 +34,24 @@ public class Library {
             //search book
             //borrow book
             //return book
+            case "searchBook":
+                searchByISBN(scanner);
+                break;
 
             default:
                 System.out.println("Unknown command.");
         }
     }
 
+    public static void searchByISBN(Scanner scanner) {
+        System.out.println("Enter ISBN to search:");
+        int isbn = Integer.parseInt(scanner.nextLine().trim());
+        Books book = books.get(isbn); // Search the book by ISBN
+        if (book != null) {
+            System.out.println("Found: " + book);
+        } else {
+            System.out.println("Book not found.");
+        }
     }
+
 }

@@ -2,11 +2,11 @@ package QA;
 
 public class Books {
     private String name;
-    private int isb;
+    private int isbn;
 
-    public Books(String name, int isb) {
+    public Books(String name, int isbn) {
         this.name = name;
-        this.isb = isb;
+        this.isbn = isbn;
     }
 
     public String getName() {
@@ -17,19 +17,19 @@ public class Books {
         this.name = name;
     }
 
-    public int getIsb() {
-        return isb;
+    public int getIsbn() {
+        return isbn;
     }
 
-    public void setIsb(int isb) {
-        this.isb = isb;
+    public void setIsbn(int isbn) {
+        this.isbn = isbn;
     }
 
     @Override
     public String toString() {
         return "Books{" +
                 "name='" + name + '\'' +
-                ", isb=" + isb +
+                ", isbn=" + isbn +
                 '}';
     }
 }
