@@ -65,12 +65,13 @@ public class Library {
 
 
     private static void addBook(Scanner scanner) {
-        System.out.println("Enter name, ISB: ");
+        System.out.println("Enter book name, ISBN, and author (e.g., Name,9780743273565,Author):");
         String[] bookInfo = scanner.nextLine().split(",");
         String bookName = bookInfo[0].trim();
         int isb = Integer.parseInt(bookInfo[1].trim());
+        String author = bookInfo[2].trim();
         int bookId = bookIdCounter++;
-        Books book = new Books(bookName, isb);
+        Books book = new Books(bookId, bookName, isb, author);
         books.put(bookName, isb);
         System.out.println("Book added: " + bookName + " ISB: " + isb);
     }
