@@ -1,14 +1,13 @@
 package QA;
 
 public class Books {
-    private int bookId;
+
     private String name;
     private int isb;
     private String author;
     private boolean isAvailable; // Status of availability
 
-    public Books(int bookId, String name, int isb, String author) {
-        this.bookId = bookId;
+    public Books(String name, int isb, String author) {
         this.name = name;
         this.isb = isb;
         this.author = author;
@@ -19,9 +18,6 @@ public class Books {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getIsb() {
         return isb;
