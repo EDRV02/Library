@@ -7,7 +7,7 @@ import java.util.*;
 public class Library {
     private static Map<String, Integer> books = new HashMap<String, Integer>();
     private static Map<String, Integer> patrons = new HashMap<String, Integer>();
-
+    private Map<Books, Patrons> borrowedBooks = new HashMap<>();
     private static int bookIdCounter = 1;
     private static int patronIdCounter = 1;
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class Library {
 
         while (true) {
             System.out.println("Enter command:\n" +
-                    "addBook\n addPatron\n searchBook\n");
+                    "addBook\n addPatron\n searchBook\n borrowBook\n returnBook\n listBorrowedBooks\n");
 
 
             command = scanner.nextLine();
@@ -37,8 +37,15 @@ public class Library {
             case "addPatron":
                 addPatron(scanner);
                 break;
-            //borrow book
-            //return book
+            case "borrowBook":
+                borrowBook();
+                break;
+            case "returnBook":
+                returnBook();
+                break;
+            case "listBorrowedBooks":
+                listBorrowedBooks();
+                break;
             case "searchBook":
                 searchByISBN(scanner);
                 break;
@@ -62,8 +69,6 @@ public class Library {
             System.out.println("Invalid ISBN format. Please enter a valid number.");
         }
     }
-
-
     private static void addBook(Scanner scanner) {
         System.out.println("Enter book name, ISBN, and author (e.g., Name,9780743273565,Author):");
         String[] bookInfo = scanner.nextLine().split(",");
@@ -75,7 +80,6 @@ public class Library {
         books.put(bookName, isb);
         System.out.println("Book added: " + bookName + " ISB: " + isb);
     }
-
     private  static void addPatron(Scanner scanner) {
         System.out.println("Enter name of the patron: ");
         String patronName =scanner.nextLine();
@@ -83,10 +87,31 @@ public class Library {
         Patrons patron = new Patrons(patronName, patronId);
         patrons.put(patronName, patronId);
         System.out.println("Patron added { Name: " + patronName + " ID: " + patronId);
-
-
     }
-
+    public static void borrowBook(Patrons patron, Books book) {
+        if (books.containsKey(book) && !borrowedBooks.containsKey(book)) {
+            borrowedBooks.put(book, patron);
+            patron.borrowBook(book);
+            System.out.println(patron.getName() + " borrowed " + book.getName());
+        } else {
+            System.out.println("Book is not available or already borrowed.");
+        }
+    }
+    public static void returnBook(Patrons patron, Books book) {
+        if (borrowedBooks.containsKey(book) && borrowedBooks.get(book).equals(patron)) {
+            borrowedBooks.remove(book);
+            patron.returnBook(book);
+            System.out.println(patron.getName() + " returned " + book.getName());
+        } else {
+            System.out.println("This book was not borrowed by this patron.");
+        }
+    }
+    public static void listBorrowedBooks() {
+        System.out.println("Borrowed Books:");
+        for (Map.Entry<Books, Patrons> entry : borrowedBooks.entrySet()) {
+            System.out.println(entry.getKey() + " borrowed by " + entry.getValue().getName());
+        }
+    }
 
     }
 

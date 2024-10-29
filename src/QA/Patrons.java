@@ -4,10 +4,21 @@ import java.util.*;
 public class Patrons {
     private String name;
     private int id;
+    private List<Books> borrowedBooks;
 
     public Patrons(String name, int id) {
         this.name = name;
         this.id = id;
+        this.borrowedBooks = borrowedBooks;
+    }
+    public void borrowBook(Books book) {
+        borrowedBooks.add(book);
+    }
+    public void returnBook(Books book) {
+        borrowedBooks.remove(book);
+    }
+    public List<Books> getBorrowedBooks() {
+        return borrowedBooks;
     }
 
     @Override
@@ -24,10 +35,6 @@ public class Patrons {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Patrons(String name) {
-        this.name = name;
     }
 
     public String getName() {
