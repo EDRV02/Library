@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Library {
     private static Map<String, Integer> books = new HashMap<String, Integer>();
-    private static Map<String, Patrons> patrons = new HashMap<>();
+    private static Map<String, Integer> patrons = new HashMap<String, Integer>();
     private static int bookIdCounter = 1;
     private static int patronIdCounter = 1;
     public static void main(String[] args) {
@@ -32,7 +32,9 @@ public class Library {
             case "addBook":
                 addBook(scanner);
                 break;
-            //add patron
+            case "addPatron":
+                addPatron(scanner);
+                break;
             //search book
             //borrow book
             //return book
@@ -51,8 +53,14 @@ public class Library {
         Books book = new Books(bookName, isb);
         books.put(bookName, isb);
         System.out.println("Book added: " + bookName + " ISB: " + isb);
-
-
+    }
+    private  static void addPatron(Scanner scanner) {
+        System.out.println("Enter name of the patron: ");
+        String patronName =scanner.nextLine();
+        int patronId = patronIdCounter++;
+        Patrons patron = new Patrons(patronName, patronId);
+        patrons.put(patronName, patronId);
+        System.out.println("Patron added { Name: " + patronName + " ID: " + patronId);
 
 
     }
