@@ -18,6 +18,7 @@ public class Library {
             System.out.println("Enter command:\n" +
                     "addBook\n addPatron\n searchBook\n");
 
+
             command = scanner.nextLine();
 
             if (command.equals("exit")) {
