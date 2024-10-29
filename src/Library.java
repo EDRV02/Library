@@ -5,8 +5,9 @@ import java.util.*;
 
 
 public class Library {
-    private static Map<String, Integer> books = new HashMap<>();
-    private static Map<String, Patrons> patrons = new HashMap<>();
+    private static Map<String, Integer> books = new HashMap<String, Integer>();
+    private static Map<String, Integer> patrons = new HashMap<String, Integer>();
+
     private static int bookIdCounter = 1;
     private static int patronIdCounter = 1;
     public static void main(String[] args) {
@@ -32,7 +33,9 @@ public class Library {
             case "addBook":
                 addBook(scanner);
                 break;
-            //add patron
+            case "addPatron":
+                addPatron(scanner);
+                break;
             //search book
             //borrow book
             //return book
@@ -48,8 +51,8 @@ public class Library {
     private static void searchByISBN(Scanner scanner) {
         System.out.println("Enter ISBN to search:");
         try {
-            int isbn = Integer.parseInt(scanner.nextLine().trim());
-            Integer book = books.get(isbn); // Search the book by ISBN
+            int isb = Integer.parseInt(scanner.nextLine().trim());
+            Integer book = books.get(isb); // Search the book by ISBN
             if (book != null) {
                 System.out.println("Found: " + book);
             } else {
@@ -62,16 +65,23 @@ public class Library {
 
 
     private static void addBook(Scanner scanner) {
-        System.out.println("Enter name, ISBN: ");
+        System.out.println("Enter name, ISB: ");
         String[] bookInfo = scanner.nextLine().split(",");
         String bookName = bookInfo[0].trim();
-        int isbn = Integer.parseInt(bookInfo[1].trim());
+        int isb = Integer.parseInt(bookInfo[1].trim());
         int bookId = bookIdCounter++;
-        Books book = new Books(bookName, isbn);
-        books.put(bookName, isbn);
-        System.out.println("Book added: " + bookName + " ISB: " + isbn);
+        Books book = new Books(bookName, isb);
+        books.put(bookName, isb);
+        System.out.println("Book added: " + bookName + " ISB: " + isb);
+    }
 
-
+    private  static void addPatron(Scanner scanner) {
+        System.out.println("Enter name of the patron: ");
+        String patronName =scanner.nextLine();
+        int patronId = patronIdCounter++;
+        Patrons patron = new Patrons(patronName, patronId);
+        patrons.put(patronName, patronId);
+        System.out.println("Patron added { Name: " + patronName + " ID: " + patronId);
 
 
     }
