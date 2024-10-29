@@ -21,7 +21,7 @@ public class Books {
         return isb;
     }
 
-    public void setIsbn(int isb) {
+    public void setIsb(int isb) {
         this.isb = isb;
     }
 
@@ -29,7 +29,7 @@ public class Books {
     public String toString() {
         return "Books{" +
                 "name='" + name + '\'' +
-                ", isbn=" + isb +
+                ", isb=" + isb +
                 '}';
     }
 }
