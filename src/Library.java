@@ -37,7 +37,6 @@ public class Library {
             case "addPatron":
                 addPatron(scanner);
                 break;
-            //search book
             //borrow book
             //return book
             case "searchBook":
