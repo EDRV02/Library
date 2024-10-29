@@ -1,12 +1,18 @@
 package QA;
 
 public class Books {
+    private int bookId;
     private String name;
     private int isb;
+    private String author;
+    private boolean isAvailable; // Status of availability
 
-    public Books(String name, int isb) {
+    public Books(int bookId, String name, int isb, String author) {
+        this.bookId = bookId;
         this.name = name;
         this.isb = isb;
+        this.author = author;
+        this.isAvailable = true; // by default a new book is available
     }
 
     public String getName() {
@@ -25,11 +31,29 @@ public class Books {
         this.isb = isb;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
     @Override
     public String toString() {
         return "Books{" +
                 "name='" + name + '\'' +
-                ", isb=" + isb +
+                ", isb='" + isb + '\'' +
+                ", author='" + author + '\'' +
+                ", isAvailable=" + isAvailable +
                 '}';
     }
 }
