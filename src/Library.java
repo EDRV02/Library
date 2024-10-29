@@ -15,7 +15,7 @@ public class Library {
 
         while (true) {
             System.out.println("Enter command:\n" +
-                    "addBook\n");
+                    "addBook\n" + "addPatron\n");
 
             command = scanner.nextLine();
 
